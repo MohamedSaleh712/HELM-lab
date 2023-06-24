@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-jenkins
+  namespace: {{ .Values.metadata.namespace }}
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    # path: "/Users/admin/Desktop/elkasaby/ITI/sonarqube/demo03/apply-jenkins/jenkins/jenkins-home"
+    path: "/run/desktop/mnt/host/d/workspace/git/Sonarqube-Demo/demo03/apply-jenkins/jenkins/jenkins-home"

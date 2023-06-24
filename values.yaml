@@ -1,0 +1,53 @@
+metadata:
+  name: jenkins
+  namespace: jenkins
+  label: jenkins
+
+image:
+  repo: kareemelkasaby
+  name: jenkins-slave-java-11
+
+slave:
+  name: ubuntu-slave
+  labelName: ubuntu-slave
+
+
+services:
+  ingressPort: 8080
+  protocol: TCP
+  port: 8080
+  nodePort: 30013
+  agentPort: 50000
+
+ingress:
+  enabled: true
+
+# Default values for Jenkins slaves
+jenkinsSlaves:
+- name: dev-slave
+  image: kareemelkasaby/jenkins-slave-java-11
+- name: prod-slave
+  image: kareemelkasaby/jenkins-slave-java-11
+- name: release-slave
+  image: kareemelkasaby/jenkins-slave-java-11
+- name: test-slave
+  image: kareemelkasaby/jenkins-slave-java-11
+
+
+
+clusterRole:
+  resources:
+  - pods
+  - pods/attach
+  - pods/exec
+  - pods/portforward
+  - pods/proxy
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - get
+  - list
+  - patch
+  - update
+  - watch
